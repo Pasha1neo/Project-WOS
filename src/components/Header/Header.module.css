@@ -1,0 +1,22 @@
+.header {
+    grid-area: h;
+    background-color: green;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.header a {
+    display: flex;
+    align-items: center;
+    width: 90%;
+    height: 90%;
+    justify-content: space-between;
+}
+.header img {
+    height: 80%;
+}
+/* .loginBlock {
+    float: right;
+    margin-top: 20px;
+    margin-right: 20px;
+} */

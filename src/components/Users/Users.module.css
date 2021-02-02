@@ -1,0 +1,14 @@
+.backfone {
+    color: white;
+}
+.usersPhoto {
+    width: 100px;
+    height: 100px;
+}
+.selectedPage {
+    color: black;
+}
+.allPages {
+    width: 658px;
+    word-wrap: break-word;
+}
