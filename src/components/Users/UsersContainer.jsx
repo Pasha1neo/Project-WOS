@@ -9,7 +9,7 @@ import {
     toggleFollowingProgress,
     getUsers,
 } from '../../redux/usersReducer'
-import {withAuthRedurect} from '../hoc/withAuthRedirect'
+//import {withAuthRedurect} from '../hoc/withAuthRedirect'
 import {compose} from 'redux'
 
 class UserscContainer extends React.Component {

@@ -5,7 +5,10 @@
     align-items: center;
     justify-content: center;
 }
-.header a {
+.loginBlock {
+    color: white;
+}
+a {
     display: flex;
     align-items: center;
     width: 90%;
