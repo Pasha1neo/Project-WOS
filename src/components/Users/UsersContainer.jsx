@@ -57,6 +57,6 @@ export default compose(
         setCurrentPage,
         toggleFollowingProgress,
         getUsers,
-    }),
-    withAuthRedurect
+    })
+    // withAuthRedurect
 )(UserscContainer)

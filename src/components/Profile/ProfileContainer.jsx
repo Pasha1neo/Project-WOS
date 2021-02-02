@@ -9,8 +9,11 @@ import {compose} from 'redux'
 class ProfileContainer extends React.Component {
     componentDidMount() {
         let userId = this.props.match.params.userId
-        if (!userId && this.props.isAuth) {
+        if (!userId /*&& this.props.isAuth*/) {
             userId = this.props.AuthorizedUserId
+            if (!userId) {
+                this.props.history.push('/login')
+            }
         }
         this.props.getProfile(userId)
         this.props.getUserStatus(userId)
@@ -34,6 +37,6 @@ let mapStateToProps = (state) => ({
 })
 export default compose(
     connect(mapStateToProps, {getProfile, getUserStatus, updateStatus}),
-    withRouter,
-    withAuthRedurect
+    withRouter
+    // withAuthRedurect
 )(ProfileContainer)
