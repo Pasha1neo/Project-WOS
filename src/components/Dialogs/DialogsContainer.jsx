@@ -1,7 +1,6 @@
 import Dialogs from './Dialogs'
-import {sendMessageCreator, updateNewMessageTextCreator} from '../../redux/dialogsReducer'
+import {sendMessageCreator} from '../../redux/dialogsReducer'
 import {connect} from 'react-redux'
-import {withAuthRedurect} from '../hoc/withAuthRedirect'
 import {compose} from 'redux'
 
 const mapStateToProps = (state) => {
@@ -11,13 +10,9 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        udpateNewMessageBody: (body) => {
-            dispatch(updateNewMessageTextCreator(body))
-        },
-        sendMessage: () => {
-            dispatch(sendMessageCreator())
+        sendMessage: (newMessageBody) => {
+            dispatch(sendMessageCreator(newMessageBody))
         },
     }
 }
-
 export default compose(connect(mapStateToProps, mapDispatchToProps) /**withAuthRedurect**/)(Dialogs)

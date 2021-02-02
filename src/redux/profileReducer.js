@@ -1,5 +1,5 @@
 import {profileAPI} from '../api/api'
-const UPDATEPOSTTEXT = 'UPDATE-NEW-POST-TEXT'
+
 const ADDPOST = 'ADD-POST'
 const SETUSERPROFILE = 'SETUSERPROFILE'
 const SETSTATUS = 'SETSTATUS'
@@ -11,32 +11,23 @@ let initialState = {
         {text: "It's my second post", id: 3, likeCount: 20},
     ],
     profile: null,
-    newPostText: '',
-    status: 'п',
+    status: '',
 }
-
 const profileReducer = (state = initialState, action) => {
     switch (action.type) {
         default:
             return state
-        case UPDATEPOSTTEXT: {
-            return {
-                ...state,
-                newPostText: action.newText,
-            }
-        }
         case ADDPOST: {
             return {
                 ...state,
                 postData: [
                     ...state.postData,
                     {
-                        text: state.newPostText,
+                        text: action.newPostText,
                         id: state.postData.length + 1,
                         likeCount: 0,
                     },
                 ],
-                newPostText: '',
             }
         }
         case SETUSERPROFILE: {
@@ -53,14 +44,11 @@ const profileReducer = (state = initialState, action) => {
         }
     }
 }
-// РЕДЬЮСЕРЫ
 
-export const updateNewPostTextCreator = (text) => {
-    return {type: UPDATEPOSTTEXT, newText: text}
+export const addPostCreator = (newPostText) => {
+    return {type: ADDPOST, newPostText}
 }
-export const addPostCreator = () => {
-    return {type: ADDPOST}
-}
+
 export const setUserProfile = (profile) => {
     return {type: SETUSERPROFILE, profile: profile}
 }
@@ -68,7 +56,6 @@ export const setStatus = (status) => {
     return {type: SETSTATUS, status: status}
 }
 
-// САНКИ
 export const getProfile = (id) => {
     return (dispatch) => {
         profileAPI.getProfile(id).then((data) => {

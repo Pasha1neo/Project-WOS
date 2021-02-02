@@ -1,7 +1,27 @@
-import React from 'react'
-import Preloader from '../../common/Preloader/Preloader'
 import style from './MyPosts.module.css'
 import Post from './Post/Post'
+import Preloader from '../../common/Preloader/Preloader'
+import {Field, reduxForm} from 'redux-form'
+import {required, maxLengthCreator} from '../../utils/validators/validators'
+import {Textarea} from '../../common/FormsControls/FormsControls'
+
+const maxLength = maxLengthCreator(10)
+
+const addNewPostForm = (props) => {
+    return (
+        <form onSubmit={props.handleSubmit}>
+            <Field
+                name={'newPostText'}
+                component={Textarea}
+                placeholder='Напишите что нибудь'
+                validate={[required, maxLength]}
+            />
+            <button>Опубликовать пост</button>
+        </form>
+    )
+}
+
+const PostReduxFrom = reduxForm({form: 'ProfileAddNewPostForm'})(addNewPostForm)
 
 const MyPosts = (props) => {
     if (!props.profile) {
@@ -19,32 +39,14 @@ const MyPosts = (props) => {
         )
     })
 
-    let newPostElement = React.createRef()
-
-    let onAddPost = () => {
-        props.addPost()
-    }
-
-    let onPostChange = () => {
-        let text = newPostElement.current.value
-        props.updateNewPostText(text)
+    let onAddPost = (value) => {
+        props.addPost(value.newPostText)
     }
 
     return (
         <div className={style.postsBlock}>
             <h3>My posts</h3>
-            <div>
-                <div>
-                    <textarea
-                        onChange={onPostChange}
-                        ref={newPostElement}
-                        value={props.newPostText}
-                    />
-                </div>
-                <div>
-                    <button onClick={onAddPost}>addpost</button>
-                </div>
-            </div>
+            <PostReduxFrom onSubmit={onAddPost} />
             <div className={style.posts}>{post}</div>
         </div>
     )

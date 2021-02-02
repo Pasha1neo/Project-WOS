@@ -1,0 +1,17 @@
+.formControl.error input,
+.formControl.error textarea {
+    border: 2px solid red;
+}
+.formControl textarea {
+    border: none;
+    min-width: 400px;
+    min-height: 50px;
+    color: black;
+    outline: none;
+}
+.formControl textarea::placeholder {
+    color: black;
+}
+.formControl.error span {
+    color: red;
+}
