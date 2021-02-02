@@ -1,3 +1,11 @@
 body {
     color: white;
 }
+.formSummaryError {
+    border: red 1px solid;
+    padding: 5px;
+    color: #ed5129;
+    width: 200px;
+    justify-content: center;
+    display: flex;
+}

@@ -13,7 +13,7 @@ const App = () => {
             <HeaderContainer />
             <Navbar />
             <div className='app-wrapper-content'>
-                <Route exact path='/' render={() => <div>GeneralPage</div>} />
+                <Route exact path='/' render={() => <>GeneralPage</>} />
                 <Route path='/dialogs' render={() => <DialogsContainer />} />
                 <Route path='/profile/:userId?' render={() => <ProfileContainer />} />
                 <Route path='/users' render={() => <UsersContainer />} />
