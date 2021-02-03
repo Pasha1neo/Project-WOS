@@ -1,5 +1,4 @@
 import {usersAPI} from '../api/api'
-
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SETUSERS = 'SETUSERS'
@@ -7,7 +6,6 @@ const SETCURRENTPAGE = 'SETCURRENTPAGE'
 const SETTOTALCOUNT = 'SETTOTALCOUNT'
 const TOGGLEISFETCHING = 'TOGGLEISFETCHING'
 const FOLLOWINGPROGRESS = 'TOGGLEISFOLLOWINGPROGRESS'
-
 let initialState = {
     users: [],
     pageSize: 100,
@@ -16,6 +14,7 @@ let initialState = {
     isFetching: false,
     followingInProgress: [],
 }
+
 const usersReducer = (state = initialState, action) => {
     switch (action.type) {
         case FOLLOW:
@@ -70,11 +69,11 @@ export const toggleFollowingProgress = (isFetching, userId) => ({
     isFetching,
     userId,
 })
-
-export const getUsers = (currentPage, pageSize) => {
+export const requestUsers = (page, pageSize) => {
     return (dispatch) => {
         dispatch(toggleIsFetching(true))
-        usersAPI.getUsers(currentPage, pageSize).then((data) => {
+        dispatch(setCurrentPage(page))
+        usersAPI.getUsers(page, pageSize).then((data) => {
             dispatch(setTotalUsersCount(data.totalCount))
             dispatch(setUsers(data.items))
             dispatch(toggleIsFetching(false))

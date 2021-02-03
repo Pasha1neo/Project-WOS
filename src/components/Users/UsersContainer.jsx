@@ -2,23 +2,23 @@ import React from 'react'
 import Users from './Users'
 import {connect} from 'react-redux'
 import Preloader from '../common/Preloader/Preloader'
-import {
-    follow,
-    unfollow,
-    setCurrentPage,
-    toggleFollowingProgress,
-    getUsers,
-} from '../../redux/usersReducer'
-import {withAuthRedurect} from '../hoc/withAuthRedirect'
+import {follow, unfollow, toggleFollowingProgress, requestUsers} from '../../redux/usersReducer'
 import {compose} from 'redux'
+import {
+    getUsers,
+    getPageSize,
+    getTotalUsersCount,
+    getCurrentPage,
+    getIsFetching,
+    getFollowingInProgress,
+} from '../../redux/usersSelectors'
 
 class UserscContainer extends React.Component {
     componentDidMount() {
-        this.props.getUsers(this.props.currentPage, this.props.pageSize)
+        this.props.requestUsers(this.props.currentPage, this.props.pageSize)
     }
     onPageChanged = (currentPage) => {
-        this.props.setCurrentPage(currentPage)
-        this.props.getUsers(currentPage, this.props.pageSize)
+        this.props.requestUsers(currentPage, this.props.pageSize)
     }
     render() {
         return (
@@ -40,23 +40,16 @@ class UserscContainer extends React.Component {
         )
     }
 }
-const mapStateToProps = (state) => {
+let mapStateToProps = (state) => {
     return {
-        users: state.usersPage.users,
-        pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
-        followingInProgress: state.usersPage.followingInProgress,
+        users: getUsers(state),
+        pageSize: getPageSize(state),
+        totalUsersCount: getTotalUsersCount(state),
+        currentPage: getCurrentPage(state),
+        isFetching: getIsFetching(state),
+        followingInProgress: getFollowingInProgress(state),
     }
 }
 export default compose(
-    connect(mapStateToProps, {
-        follow,
-        unfollow,
-        setCurrentPage,
-        toggleFollowingProgress,
-        getUsers,
-    })
-    // withAuthRedurect
+    connect(mapStateToProps, {follow, unfollow, toggleFollowingProgress, requestUsers})
 )(UserscContainer)
