@@ -2,7 +2,11 @@ import React from 'react'
 import Profile from './Profile'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
-import {getProfile, getUserStatus, updateStatus} from '../../redux/profileReducer'
+import {
+    getProfile,
+    getUserStatus,
+    updateStatus,
+} from '../../redux/profileReducer'
 import {withAuthRedurect} from '../hoc/withAuthRedirect'
 import {compose} from 'redux'
 
