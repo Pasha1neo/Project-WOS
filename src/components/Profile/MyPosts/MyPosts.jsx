@@ -4,6 +4,7 @@ import Preloader from '../../common/Preloader/Preloader'
 import {Field, reduxForm} from 'redux-form'
 import {required, maxLengthCreator} from '../../utils/validators/validators'
 import {Textarea} from '../../common/FormsControls/FormsControls'
+import React from 'react'
 
 const maxLength = maxLengthCreator(10)
 
@@ -23,7 +24,7 @@ const addNewPostForm = (props) => {
 
 const PostReduxFrom = reduxForm({form: 'ProfileAddNewPostForm'})(addNewPostForm)
 
-const MyPosts = (props) => {
+const MyPosts = React.memo((props) => {
     if (!props.profile) {
         return <Preloader />
     }
@@ -50,6 +51,6 @@ const MyPosts = (props) => {
             <div className={style.posts}>{post}</div>
         </div>
     )
-}
+})
 
 export default MyPosts
