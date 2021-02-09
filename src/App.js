@@ -26,8 +26,14 @@ class App extends Component {
                 <Navbar />
                 <div className='app-wrapper-content'>
                     <Route exact path='/' render={() => <>GeneralPage</>} />
-                    <Route path='/dialogs' render={() => <DialogsContainer />} />
-                    <Route path='/profile/:userId?' render={() => <ProfileContainer />} />
+                    <Route
+                        path='/dialogs'
+                        render={() => <DialogsContainer />}
+                    />
+                    <Route
+                        path='/profile/:userId?'
+                        render={() => <ProfileContainer />}
+                    />
                     <Route path='/users' render={() => <UsersContainer />} />
                     <Route path='/login' render={() => <LoginPage />} />
                 </div>
@@ -40,4 +46,7 @@ const mapStateToProps = (state) => ({
     initialized: state.app.initialized,
 })
 
-export default compose(withRouter, connect(mapStateToProps, {initializeApp}))(App)
+export default compose(
+    withRouter,
+    connect(mapStateToProps, {initializeApp})
+)(App)

@@ -3,7 +3,7 @@ import {profileAPI} from '../api/api'
 const ADDPOST = 'ADD-POST'
 const SETUSERPROFILE = 'SETUSERPROFILE'
 const SETSTATUS = 'SETSTATUS'
-
+const DELETEPOST = 'DELETEPOST'
 let initialState = {
     postData: [
         {text: 'Hi, how are you?', id: 1, likeCount: 1},
@@ -42,6 +42,12 @@ const profileReducer = (state = initialState, action) => {
                 status: action.status,
             }
         }
+        case DELETEPOST: {
+            return {
+                ...state,
+                postData: state.postData.filter((p) => p.id != action.postId),
+            }
+        }
     }
 }
 
@@ -54,6 +60,9 @@ export const setUserProfile = (profile) => {
 }
 export const setStatus = (status) => {
     return {type: SETSTATUS, status: status}
+}
+export const deletePost = (postId) => {
+    return {type: DELETEPOST, postId}
 }
 
 export const getProfile = (id) => {
