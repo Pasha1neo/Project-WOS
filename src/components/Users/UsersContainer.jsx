@@ -15,16 +15,17 @@ import {
 
 class UserscContainer extends React.Component {
     componentDidMount() {
-        this.props.requestUsers(this.props.currentPage, this.props.pageSize)
+        let {currentPage, pageSize} = this.props
+        this.props.requestUsers(currentPage, pageSize)
     }
     onPageChanged = (currentPage) => {
-        this.props.requestUsers(currentPage, this.props.pageSize)
+        let {pageSize} = this.props
+        this.props.requestUsers(currentPage, pageSize)
     }
     render() {
         return (
             <>
                 {this.props.isFetching ? <Preloader /> : null}
-
                 <Users
                     totalUsersCount={this.props.totalUsersCount}
                     pageSize={this.props.pageSize}

@@ -13,14 +13,10 @@ export const usersAPI = {
             .then((response) => response.data)
     },
     follow(id) {
-        return instance
-            .post(`follow/${id}`)
-            .then((response) => (response.data.resultCode === 0 ? true : false))
+        return instance.post(`follow/${id}`)
     },
     unFollow(id) {
-        return instance
-            .delete(`follow/${id}`)
-            .then((response) => (response.data.resultCode === 0 ? true : false))
+        return instance.delete(`follow/${id}`)
     },
 }
 export const profileAPI = {
@@ -30,9 +26,13 @@ export const profileAPI = {
 
     getStatus(id) {
         if (id === '') {
-            return instance.get(`profile/status/2`).then((response) => response.data)
+            return instance
+                .get(`profile/status/2`)
+                .then((response) => response.data)
         }
-        return instance.get(`profile/status/${id}`).then((response) => response.data)
+        return instance
+            .get(`profile/status/${id}`)
+            .then((response) => response.data)
     },
     updateStatus(status) {
         return instance.put(`profile/status`, {status: status})

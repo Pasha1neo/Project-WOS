@@ -6,7 +6,7 @@ import {required, maxLengthCreator} from '../../utils/validators/validators'
 import {Textarea} from '../../common/FormsControls/FormsControls'
 import React from 'react'
 
-const maxLength = maxLengthCreator(10)
+const maxLength = maxLengthCreator(100)
 
 const addNewPostForm = (props) => {
     return (
