@@ -1,7 +1,6 @@
 import s from './ProfileInfo.module.css'
 import Preloader from '../../common/Preloader/Preloader'
 import photo from '../MyPosts/Post/photo.svg'
-import ProfileStatus from './ProfileStatus'
 import ProfileStatusWithHooks from './ProfileStatuswithhooks'
 
 const ProfileInfo = ({profile, userId, status, updateStatus}) => {

@@ -1,7 +1,6 @@
-import s from './ProfileInfo.module.css'
-import React from 'react'
+import {Component} from 'react'
 
-class ProfileStatus extends React.Component {
+class ProfileStatus extends Component {
     state = {
         editMode: false,
         status: this.props.status,
@@ -36,9 +35,7 @@ class ProfileStatus extends React.Component {
                     <div>
                         <span onDoubleClick={this.activateEditMode}>
                             {/* {this.props.status || 'Пустой статус'} */}
-                            {this.props.status
-                                ? this.props.status
-                                : 'Статус отсутсвует'}
+                            {this.props.status ? this.props.status : 'Статус отсутсвует'}
                         </span>
                     </div>
                 ) : (
