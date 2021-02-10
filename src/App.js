@@ -1,17 +1,18 @@
+import './app.css'
 import {BrowserRouter, Route, withRouter} from 'react-router-dom'
-import {Component} from 'react'
+import {Component, lazy} from 'react'
 import {connect, Provider} from 'react-redux'
 import {compose} from 'redux'
-import './app.css'
+import Preloader from './components/common/Preloader/Preloader'
 import Navbar from './components/Navbar/Navbar'
 import UsersContainer from './components/Users/UsersContainer'
-import DialogsContainer from './components/Dialogs/DialogsContainer'
-import ProfileContainer from './components/Profile/ProfileContainer'
 import HeaderContainer from './components/Header/HeaderContainer'
-import LoginPage from './components/Login/Login'
-import Preloader from './components/common/Preloader/Preloader'
 import {initializeApp} from './redux/appReducer'
 import store from './redux/redux-store'
+import {withSuspense} from './components/hoc/withSuspense'
+const DialogsContainer = lazy(() => import('./components/Dialogs/DialogsContainer'))
+const ProfileContainer = lazy(() => import('./components/Profile/ProfileContainer'))
+const LoginPage = lazy(() => import('./components/Login/Login'))
 
 class App extends Component {
     componentDidMount() {
@@ -27,10 +28,10 @@ class App extends Component {
                 <Navbar />
                 <div className='app-wrapper-content'>
                     <Route exact path='/' render={() => <>GeneralPage</>} />
-                    <Route path='/dialogs' render={() => <DialogsContainer />} />
-                    <Route path='/profile/:userId?' render={() => <ProfileContainer />} />
+                    <Route path='/dialogs' render={withSuspense(DialogsContainer)} />
+                    <Route path='/profile/:userId?' render={withSuspense(ProfileContainer)} />
                     <Route path='/users' render={() => <UsersContainer />} />
-                    <Route path='/login' render={() => <LoginPage />} />
+                    <Route path='/login' render={withSuspense(LoginPage)} />
                 </div>
             </div>
         )
@@ -42,7 +43,7 @@ const mapStateToProps = (state) => ({
 })
 
 let AppContainer = compose(withRouter, connect(mapStateToProps, {initializeApp}))(App)
-let SamuraiJSApp = (props) => {
+let SamuraiJSApp = () => {
     return (
         <BrowserRouter>
             <Provider store={store}>
