@@ -1,12 +1,33 @@
-.descriptionBlock {
-    padding: 10px;
-}
-.mainPhoto {
-    height: 120px;
-    padding-top: 40px;
-    padding-left: 35px;
-}
 .fullName {
     font-size: 35px;
-    padding-left: 20px;
+}
+.infoblock {
+    display: flex;
+    flex-direction: column;
+}
+.mainPhoto {
+    width: 120px;
+    height: 120px;
+}
+.uploadPhoto {
+    border: none;
+    width: 230px;
+}
+.contact {
+    margin-left: 40px;
+    display: flex;
+    flex-direction: row;
+}
+.contact a {
+    outline: none;
+    text-decoration: none;
+    color: red;
+}
+.formSummaryError {
+    border: red 1px solid;
+    padding: 5px;
+    color: #ed5129;
+    width: 200px;
+    justify-content: center;
+    display: flex;
 }

@@ -42,6 +42,9 @@ export const profileAPI = {
             },
         })
     },
+    saveProfile(data) {
+        return instance.put('profile', data)
+    },
 }
 export const authAPI = {
     me() {

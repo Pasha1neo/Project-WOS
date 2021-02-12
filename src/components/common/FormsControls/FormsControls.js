@@ -28,7 +28,7 @@ export const Textarea = (props) => {
         </FormControl>
     )
 }
-export const CreateField = (placeholder, name, validate, component, type, text) => {
+export const CreateField = (placeholder, name, validate, component, type, text = null) => {
     return (
         <>
             <Field
