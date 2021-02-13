@@ -13,11 +13,11 @@ import {compose} from 'redux'
 
 class ProfileContainer extends React.Component {
     refreshProfile() {
-        let userId = this.props.match.params.userId
+        let userId = this.props.match.params.userId // штука из withRouter
         if (!userId) {
             userId = this.props.AuthorizedUserId
             if (!userId) {
-                this.props.history.push('/login') //редирект по стандарту
+                this.props.history.push('/login') //редирект по нативному js
             }
         }
         this.props.getProfile(userId)
